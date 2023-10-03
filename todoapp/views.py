@@ -17,3 +17,15 @@ def delete_task(request, task_id):
     task = Todo.objects.get(pk=task_id)
     task.delete()
     return redirect('index')
+
+from .forms import TodoForm
+
+def add_task(request):
+    if request.method == 'POST':
+        form = TodoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = TodoForm()
+    return render(request, 'add_task.html', {'form': form})

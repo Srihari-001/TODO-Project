@@ -45,3 +45,12 @@
     {% endfor %}
     </tbody>
 </table>
+{% for todo in todos %}
+    <div>
+        {{ todo.title }}
+        {% if todo.due_date %}
+            (Due: {{ todo.due_date|date:"F d, Y H:i" }})
+        {% endif %}
+        <!-- Your mark as complete and delete links/buttons here -->
+    </div>
+{% endfor %}
