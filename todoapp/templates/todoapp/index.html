@@ -1,0 +1,26 @@
+<table>
+    <thead>
+        <tr>
+            <th>Task</th>
+            <th>Status</th>
+            <th>Remarks</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for todo in todos %}
+        <tr>
+            <td>{{ todo.title }}</td>
+            <td>{{ todo.completed|yesno:"Done,Pending" }}</td>
+            <td>{{ todo.remarks }}</td>
+            <td>
+                <a href="{% url 'edit_task' todo.id %}">Edit</a>
+                <!-- Other actions can go here -->
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'add_task' %}">Add New Task</a>
+...
+

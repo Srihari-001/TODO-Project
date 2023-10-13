@@ -1,31 +1,27 @@
 from django.shortcuts import render, redirect
 from .models import Todo
+from .forms import TodoForm
 
 def index(request):
     todos = Todo.objects.all()
-    if request.method == 'POST':
-        new_todo = Todo(title=request.POST['title'])
-        new_todo.save()
-        return redirect('index')
-    return render(request, 'index.html', {'todos': todos})
-def complete_task(request, task_id):
-    task = Todo.objects.get(pk=task_id)
-    task.completed = True
-    task.save()
-    return redirect('index')
-def delete_task(request, task_id):
-    task = Todo.objects.get(pk=task_id)
-    task.delete()
-    return redirect('index')
+    return render(request, 'todoapp/index.html', {'todos': todos})
 
-from .forms import TodoForm
-
+def edit_task(request, task_id):
+    task = Todo.objects.get(pk=task_id)
+    if request.method == "POST":
+        form = TodoForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = TodoForm(instance=task)
+    return render(request, 'todoapp/edit_task.html', {'form': form, 'task': task})
 def add_task(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = TodoForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('index')
     else:
         form = TodoForm()
-    return render(request, 'add_task.html', {'form': form})
+    return render(request, 'todoapp/add_task.html', {'form': form})
