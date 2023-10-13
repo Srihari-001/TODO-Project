@@ -6,6 +6,7 @@ def index(request):
     todos = Todo.objects.all()
     return render(request, 'todoapp/index.html', {'todos': todos})
 
+
 def edit_task(request, task_id):
     task = Todo.objects.get(pk=task_id)
     if request.method == "POST":
