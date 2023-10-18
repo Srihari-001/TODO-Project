@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Project Title</title>
+    <!-- You can include any CSS frameworks like Bootstrap here, if needed -->
+    <style>
+        .add-task-btn {
+            display: inline-block;  /* Makes other styles like padding and borders apply as expected */
+            border: 1px solid #000; /* Gives it a border */
+            padding: 10px;          /* Adds space around the text inside the box */
+            margin-top: 20px;       /* Adds space above the button for separation */
+            background-color: #f2f2f2; /* Gives it a light gray background */
+            text-decoration: none; /* Removes the underline from the link */
+            color: black;          /* Ensures text remains black */
+        }
+
+        .add-task-btn:hover {
+            background-color: #e0e0e0; /* Slightly darker background for hover effect */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<!-- You can include any JS frameworks like jQuery here, if needed -->
+
+</body>
+</html>
