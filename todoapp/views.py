@@ -3,8 +3,9 @@ from .models import Todo
 from .forms import TodoForm
 
 def index(request):
-    todos = Todo.objects.all()
+    todos = Todo.objects.all().order_by('-completed')
     return render(request, 'todoapp/index.html', {'todos': todos})
+
 
 
 def edit_task(request, task_id):
