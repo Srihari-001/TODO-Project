@@ -13,6 +13,19 @@
     th {
         background-color: #f2f2f2; /* Giving header a slightly different background for differentiation */
     }
+    .add-task-btn {
+            display: inline-block;  /* Makes other styles like padding and borders apply as expected */
+            border: 1px solid #000; /* Gives it a border */
+            padding: 10px;          /* Adds space around the text inside the box */
+            margin-top: 20px;       /* Adds space above the button for separation */
+            background-color: #f2f2f2; /* Gives it a light gray background */
+            text-decoration: none; /* Removes the underline from the link */
+            color: black;          /* Ensures text remains black */
+        }
+
+        .add-task-btn:hover {
+            background-color: #e0e0e0; /* Slightly darker background for hover effect */
+        }
 </style>
 
 <table>
@@ -40,4 +53,5 @@
     {% endfor %}
     </tbody>
 </table>
+
 <a href="{% url 'add_task' %}" class="add-task-btn">Add New Task</a>
