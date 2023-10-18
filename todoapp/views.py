@@ -27,3 +27,8 @@ def add_task(request):
     else:
         form = TodoForm()
     return render(request, 'todoapp/add_task.html', {'form': form})
+
+def delete_task(request, task_id):
+    task = Todo.objects.get(pk=task_id)
+    task.delete()
+    return redirect('index')
