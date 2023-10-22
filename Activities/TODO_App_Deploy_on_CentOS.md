@@ -87,8 +87,8 @@ Demonstrate understanding and capability in deploying Django applications in vir
      ```
 
    - Switch to this new user:
-   - name : srihari
-   - password : ComplexPwd@321
+       name     : srihari
+       password : ComplexPwd@321
      ```bash
      su - srihari
      ```
