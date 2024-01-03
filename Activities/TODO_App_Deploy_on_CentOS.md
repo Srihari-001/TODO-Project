@@ -29,7 +29,7 @@ Demonstrate understanding and capability in deploying Django applications in vir
 
 ### **How:**
 
-1. **Setting up the CentOS VM**:
+	**Setting up the CentOS VM**:
    - Use GitBash to interface with the system.
    - Initialize a CentOS environment in Oracle VM VirtualBox via Vagrant commands:
      ```bash
@@ -37,49 +37,12 @@ Demonstrate understanding and capability in deploying Django applications in vir
      vagrant up
      ```
 
-2. **Access the VM**:
+	**Access the VM**:
    Using GitBash:
    ```bash
    vagrant ssh
    ```
-
-3. **Environment Setup**:
-   - Update CentOS package repository and install essentials:
-     ```bash
-     sudo yum update
-     sudo yum install -y python3 python3-pip git
-     ```
-
-   - Clone the Django TODO project using Git:
-     ```bash
-     git clone https://github.com/Srihari-001/TODO-Project.git
-     cd TODO-Project/
-     ```
-
-   - Generate a `requirements.txt` for the project (if not already present). On your development machine with the project running successfully, use:
-     ```bash
-     pip freeze > requirements.txt
-     ```
-
-   - Push `requirements.txt` to the GitHub repository, and pull it in the CentOS VM.
-
-   - Install `virtualenv`:
-     ```bash
-     pip3 install virtualenv
-     ```
-
-   - Create and activate a Python virtual environment within the project directory:
-     ```bash
-     virtualenv venv
-     source venv/bin/activate
-     ```
-
-   - Install required packages:
-     ```bash
-     pip install -r requirements.txt
-     ```
-
-4. **User Management**:
+	**User Management**:
    - For security reasons, it's recommended to avoid using the root user for development. Create a new user named "srihari":
      ```bash
      adduser srihari
@@ -99,7 +62,62 @@ Demonstrate understanding and capability in deploying Django applications in vir
      chown -R srihari:srihari /path/to/TODO-Project/
      ```
 
-5. **Server Deployment**:
+	**Environment Setup**:
+   - Update CentOS package repository and install essentials:
+     ```bash
+     sudo yum update
+     sudo yum install -y python3 python3-pip git
+     ```
+
+   - Clone the Django TODO project using Git:
+     ```bash
+     git clone https://github.com/Srihari-001/TODO-Project.git
+     cd TODO-Project/
+     ```
+	
+### **NOTE**:
+   - **Generate a `requirements.txt` for the project (if not already present). On your development machine with the project running successfully, use:
+     ```bash
+     pip freeze > requirements.txt
+     ```
+
+   - **Push `requirements.txt` to the GitHub repository, and pull it in the CentOS VM.
+###
+	- Install required packages:
+     ```bash
+     pip install -r requirements.txt
+     ```
+
+   - Install `virtualenv`:
+	** for centos vm
+     ```bash
+     pip3 install virtualenv
+	 ```
+	**for ubuntu VM
+	```
+	 sudo apt-get update
+	 sudo apt-get install python3-venv
+     ```
+
+   - Create and activate a Python virtual environment within the project directory:
+	 ** for centos vm
+     ```bash
+     virtualenv venv
+	 source venv/bin/activate
+     ```
+	**for ubuntu VM
+	```
+	 python3 -m venv venv
+	 source venv/bin/activate
+	 ```
+	**Database Setup: Ensure that your database is properly configured for your development environment. You may need to apply migrations and create a superuser.
+
+	 ```bash
+	 python manage.py migrate
+	 python manage.py createsuperuser
+	 ```
+
+	**Server Deployment**:
    - Modify `ALLOWED_HOSTS` in `todoproject/settings.py`:
      ```python
      ALLOWED_HOSTS = ['*']
@@ -107,15 +125,17 @@ Demonstrate understanding and capability in deploying Django applications in vir
 
    - Run Django's development server in the background, making it accessible from all IP addresses:
      ```bash
-     nohup python manage.py runserver 0.0.0.0:8000 &
+     nohup python3 manage.py runserver 0.0.0.0:8000 &
      ```
 
-   - Access the application at:
+   - Access the application in browser at:
      ```
-     http://192.168.74.10:8000/
+     http://<IP address of VM>:8000/
      ```
+   - terminate it with `kill -9 <PID>`.
+   - Server process using `ps aux | grep "manage.py runserver"`
 
-6. **Troubleshooting & Common Issues**:
+	**Troubleshooting & Common Issues**:
 
    1. "Permission denied" error when trying to access `/root` directory. 
       - **Resolution**: Change user permissions using `chown` or switch to a different user.
@@ -123,7 +143,7 @@ Demonstrate understanding and capability in deploying Django applications in vir
    2. The Django server stops responding or needs restarting. 
       - **Resolution**: Identify the server process using `ps aux | grep "manage.py runserver"` and terminate it with `kill -9 <PID>`.
 
-7. **Post Deployment**:
+	**Post Deployment**:
    - Check the `nohup.out` file for logs or error messages:
      ```bash
      cat nohup.out
