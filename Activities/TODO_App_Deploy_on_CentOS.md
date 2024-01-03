@@ -75,29 +75,29 @@ Demonstrate understanding and capability in deploying Django applications in vir
      cd TODO-Project/
      ```
 	
-	- Install required packages:
+   - Install required packages:
      ```bash
      pip install -r requirements.txt
      ```
 
    - Install `virtualenv`:
-	* for centos vm
-     ```bash
+   * for centos vm
+     ```
      pip3 install virtualenv
 	 ```
-	*for ubuntu VM
+   * for ubuntu VM
 	```
 	 sudo apt-get update
 	 sudo apt-get install python3-venv
      ```
 
    - Create and activate a Python virtual environment within the project directory:
-	 * for centos vm
+   * for centos vm
      ```bash
      virtualenv venv
 	 source venv/bin/activate
      ```
-	*for ubuntu VM
+   * for ubuntu VM
 	```
 	 python3 -m venv venv
 	 source venv/bin/activate
