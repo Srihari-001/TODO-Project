@@ -98,7 +98,7 @@ Demonstrate understanding and capability in deploying Django applications in vir
 	 source venv/bin/activate
      ```
    * for ubuntu VM
-	```
+	```bash
 	 python3 -m venv venv
 	 source venv/bin/activate
 	 ```
